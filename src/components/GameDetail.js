@@ -27,9 +27,10 @@ const GameDetail = ({pathId}) => {
     //Exit Detail
     const exitDetailHandler = (e) => {
         const element = e.target;
+
         if(element.classList.contains('card-shadow')) {
             document.body.style.overflow = 'auto';
-            history.push('/');
+            history.push('/games-api');
         }
     };
     //Get Plaform Images
