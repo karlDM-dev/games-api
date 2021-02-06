@@ -22,6 +22,8 @@ const Nav = () => {
         dispatch(fetchSearch(textInput));
         setTextInput("");
     }
+    
+    
 
     const clearSearched = () => {
         dispatch({

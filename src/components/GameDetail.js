@@ -28,7 +28,7 @@ const GameDetail = ({pathId}) => {
     const exitDetailHandler = (e) => {
         const element = e.target;
 
-        if(element.classList.contains('card-shadow')) {
+        if(element.classList.contains('card-shadow') || element.classList.contains('close')) {
             document.body.style.overflow = 'auto';
             history.push('/games-api');
         }
@@ -79,10 +79,12 @@ const GameDetail = ({pathId}) => {
                 <CardShadow onClick={exitDetailHandler} className="card-shadow">
                     <Detail layoutId={`image ${pathId}`} className="detail">
                         <Wrapper>
-                            {/* <Media  className="media">
-                            </Media> */}
                             <StatsContainer style={{backgroundImage: `url(${smallImage(game.background_image, 1280)})`}}>
                                 <Stats className="stats">
+                                    <button onClick={exitDetailHandler} className="close">
+                                        <div className="line1"></div>
+                                        <div className="line2"></div>
+                                    </button>
                                     <div className="rating">
                                         <motion.h3 className="title" layoutId={`title ${pathId}`}>{game.name}</motion.h3>
                                         <p>Rating: {game.rating}</p>
@@ -172,6 +174,7 @@ const StatsContainer = styled(motion.div)`
 `;
 
 const Stats = styled(motion.div)`
+    position: absolute;
     width: 100%;
     height: fit-content;
     padding: 0rem 2rem 2rem 2rem;
@@ -179,6 +182,36 @@ const Stats = styled(motion.div)`
     align-items: center;
     justify-content: space-between;
     background: rgba(0,0,0,0.25);
+    z-index: 5;
+
+    .close {
+        position: absolute;
+        height: 2rem;
+        width: 2rem;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        opacity: 0.8;
+
+        .line1 {
+            width: 5px;
+            height: 2rem;
+            background: white;
+            transform: rotate(45deg) translateX(50%);
+        }
+        .line2 {
+            width: 5px;
+            height: 2rem;
+            background: white;
+            transform: rotate(-45deg) translateX(-50%);
+        }
+    }
 
     h3, p {
         color: white;
@@ -255,6 +288,7 @@ const Wrapper = styled(motion.div)`
         position: absolute;
         bottom: -2rem;
         right: 0;
+        z-index: 4;
 
         video {
             height: 100%;
